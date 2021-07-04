@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search {{ search_text }}
+{% endblock%}
+
+{% block body %}
+    <h1>Encyclopedia search</h1>
+    <b>No corresponded entry found. Possible entries:</b>
+    <ul>
+        {% for entry in entries %}
+            <li><a href="{% url 'entry' entry %}">{{ entry }}</a></li>
+        {% empty %}
+            <li>No entries matching <tt>{{ search_text }}</tt></li>
+        {% endfor %}
+    <ul>
+{% endblock %}
