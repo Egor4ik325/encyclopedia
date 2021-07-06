@@ -4,3 +4,4 @@ __pycache__/
 migrations/
 wiki_env/
 secret_settings.py
+.vscode/

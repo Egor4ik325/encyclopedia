@@ -1,0 +1,36 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}New entry{% endblock title %}
+
+{% block body %}
+    <h1>Create new entry</h1>
+
+    {% if errors %}
+        <div class="alert alert-danger d-flex align-items-center my-2" role="alert">
+            Form validation error
+        </div>
+    {% endif %}
+
+    <form action="{% url 'new' %}" method="POST">
+
+        {% csrf_token %}
+
+        <label class="form-label mb-2" for="title">Title</lable>
+        <input class="form-control mb-2" type="text" id="title" required="" name="title" value="{{ data.title }}">
+
+        {# Display all title errors if exist #}
+        {% if errors %}
+            {{ errors.title }}
+        {% endif %}
+        
+        <label class="form-label mb-2" for="content">Entry text</lable>
+        <textarea class="form-control mb-2" id="content" name="content" rows="15" cols="80" required="">{{ data.content }}</textarea>
+
+        {# Display all content errors if exist #}
+        {% if errors %}
+            {{ errors.content }}
+        {% endif %}
+
+        <input class="btn btn-primary" type="submit">
+    </form>
+{% endblock body %}
