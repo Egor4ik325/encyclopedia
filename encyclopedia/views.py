@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from . import util
 from random import choice
+from markdown import markdown
 
 
 # Steps validation (ValidationError):
@@ -67,7 +68,7 @@ def entry(request, title):
     if not entry_content:
         entry_content = "Sorry, this encyclopedia page doesn't exist."
 
-    entry_content = md_to_html(entry_content)
+    entry_content = markdown(entry_content)
     context = {'title': title, 'entry': entry_content}
     return render(request, "encyclopedia/entry.html", context)
 
