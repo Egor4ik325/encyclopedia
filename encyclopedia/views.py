@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from . import util
+from random import choice
 
 
 # Steps validation (ValidationError):
@@ -143,3 +144,9 @@ def edit(request, title):
     content = util.get_entry(title)
     context = {'data': {'title': title, 'content': content}}
     return render(request, 'encyclopedia/edit.html', context)
+
+
+def random(request):
+    entries = util.list_entries()
+    entry = choice(entries)
+    return HttpResponseRedirect(reverse('entry', args=[entry]))
