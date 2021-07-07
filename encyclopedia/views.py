@@ -1,3 +1,4 @@
+from .md_to_html import md_to_html
 from django.shortcuts import render, redirect, reverse
 from django.http.response import HttpResponseRedirect
 from django.forms import Form, CharField, Textarea
@@ -66,6 +67,7 @@ def entry(request, title):
     if not entry_content:
         entry_content = "Sorry, this encyclopedia page doesn't exist."
 
+    entry_content = md_to_html(entry_content)
     context = {'title': title, 'entry': entry_content}
     return render(request, "encyclopedia/entry.html", context)
 
