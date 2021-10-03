@@ -1,7 +1,5 @@
 .DS_Store
 *.sqlite3
 __pycache__/
-migrations/
-wiki_env/
-secret_settings.py
 .vscode/
+.env
